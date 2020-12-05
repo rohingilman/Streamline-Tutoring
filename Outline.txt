@@ -1,0 +1,68 @@
+
+boolean LoggedIn
+createUser("Rohin", "Project", "admin")
+
+While(trial=T){
+	System.out.println("Welcome, enter 0 to Sign up, 1 to Login, 2 to end trial	
+	system.in
+	
+	if(system.in= 0)
+	Sign up
+		System.out.println("enter user info")
+		name= system.in
+		pass= system.in
+		createUser= (name, pass, "Student") //Have to prevent duplicate names, simplest solution to multiple name problem
+
+
+	if(system.in= 1)
+	Login(name, pass)
+		LoggedInUser= ArrayList.get(i) //don't know how we get a specific user from the array using name and password yet
+		While(LoggedIn= T)
+			if(LoggedInUser.getRank= "Student")// Log In "GUI" for a Student
+				System.out.println("Welcome to the home screen what would you like to do:")
+				System.out.println("Press 0 to sign up for a course")
+				System.out.println("Press 1 to View Calendar with course hours")
+				System.out.println("Press 2 to Schedule Appointment")
+				System.out.println("Press 3 Log out")
+				0
+				Sign up to a course
+				1 
+				View Calendar with course hours
+				2 
+				Schedule Appointment (course, time1, time 2)
+				3
+				LoggedIn= F
+			else if(LoggedInUser.getRank= "Tutor")
+				0 
+				View myCourses
+				1 
+				SetAvailability hours(course, time1, time2)
+				2 
+				View Appointments (course)
+					0 Accept
+					1 Reject
+				3
+				LoggedIn= F
+			else if (LoggedInUser.getRank= "Admin")
+				0
+				Create Course(name)
+				1 
+				Set Rank(UserfromArrayList, newRank)
+				2
+				Get User Data
+				3 
+				View Calendar with all courses
+				4
+				LoggedIn= F
+	
+	if(system.in= 2)
+	trial=F
+}
+System.out.println("Trail over)
+
+
+Login() 
+	if(UserInfo= UserinArrayList)
+		LoggedIn=T
+	else
+		LoggedIn=F

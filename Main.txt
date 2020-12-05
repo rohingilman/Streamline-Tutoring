@@ -1,0 +1,47 @@
+
+package group.project;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ *
+ * @author Evan Schwarzenbach
+ */
+public class GroupProject {
+    static ArrayList<User> UserData = new ArrayList<>();
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       createUser("John", "Dog", "Student");
+       createUser("Mike","Cat","Tutor");
+       createUser("George","Goat","Admin");
+       createUser("James", "Cow", "Moderator");
+       getData(UserData);
+
+    }
+    public static void createUser(String name, String pass, String rank)
+    {
+        if(rank.equals("Student")){
+            UserData.add(new Student(name, pass, "Tutor"));
+        }
+        else if(rank.equals("Tutor")){
+            UserData.add(new Tutor(name, pass, "Tutor"));
+        }
+        else if(rank.equals("Admin")){
+            UserData.add(new Admin(name, pass, "Admin"));
+        }
+        else {
+            System.out.println("User creation failed, rank is invalid");
+        }
+                                
+    }
+    
+    public static void getData(ArrayList<User> ArrayList){
+        for (int i =0; i < ArrayList.size(); i++){
+            System.out.println(Arrays.toString(ArrayList.get(i).getInfo()));
+        }
+            
+    }
+}
