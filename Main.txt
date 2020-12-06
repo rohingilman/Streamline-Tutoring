@@ -3,34 +3,82 @@ package group.project;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
-/**
- *
- * @author Evan Schwarzenbach
- */
+
 public class GroupProject {
-    static ArrayList<User> UserData = new ArrayList<>();
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-       createUser("John", "Dog", "Student");
-       createUser("Mike","Cat","Tutor");
-       createUser("George","Goat","Admin");
-       createUser("James", "Cow", "Moderator");
-       getData(UserData);
-
+    static ArrayList<User> UserData = new ArrayList<>();// Stores all Users
+    static ArrayList<Course> Courses = new ArrayList<>();// Stores all courses
+    static boolean Loggedin;
+    static int LoginIndex;// This number is used for the array list, whenever a user is officially logged in, the user will be: LoggedInUser= UserData.get(LoginIndex)
+    
+    public static void main(String[] args) throws Exception {
+        boolean Trial= true;
+        createUser("Evan", "Dog", "Admin");// No matter what we will need at least one user created for this project beforehand
+        getUserData(UserData);
+        
+        while(Trial== true) {
+            System.out.println();
+            System.out.println("Hello! Welcome to Streamline tutoring.");
+            System.out.println("Enter 0 to Sign Up");
+            System.out.println("Enter 1 to Login");
+            System.out.println("Enter 2 to Exit");
+            System.out.println();
+            Scanner in = new Scanner(System.in);
+            String input = in.next();
+            
+            if(input.equals("0")){//Sign up Code Complete
+                System.out.println("Sign up");
+                System.out.println("Please enter your name");
+                Scanner inName = new Scanner(System.in);
+                String Name = inName.next();
+                System.out.println("Please enter your password");
+                Scanner inPass = new Scanner(System.in);
+                String Pass = inPass.next(); 
+                signUp(Name,Pass);
+            }
+            
+            
+            
+            else if(input.equals("1")){// Basic login, user entry
+                System.out.println("Please enter your name");
+                Scanner inName = new Scanner(System.in);
+                String Name = inName.next();
+                System.out.println("Please enter your password");
+                Scanner inPass = new Scanner(System.in);
+                String Pass = inPass.next(); 
+                if ((Login(Name,Pass))==true){//This is the hard stuff, the rest of our project rests within this if statement
+                    System.out.println("You have logged in");
+                }
+                
+                else {
+                    System.out.println("Login attempt failed, username or password is wrong");
+                }
+            }
+            
+            
+            
+            else if(input.equals("2")){// End program
+                Trial= false;
+            }
+            else {// Exception handling
+                System.out.println("Error, invalid number entered.");
+            }            
     }
-    public static void createUser(String name, String pass, String rank)
+        
+    System.out.println("Thank You for visiting our website!");
+    }
+    
+    public static void createUser(String name, String pass, String rank)// custom create user function for the admin
     {
         if(rank.equals("Student")){
-            UserData.add(new Student(name, pass, "Tutor"));
+            UserData.add(new User(name, pass, "Student"));
         }
         else if(rank.equals("Tutor")){
-            UserData.add(new Tutor(name, pass, "Tutor"));
+            UserData.add(new User(name, pass, "Tutor"));
         }
         else if(rank.equals("Admin")){
-            UserData.add(new Admin(name, pass, "Admin"));
+            UserData.add(new User(name, pass, "Admin"));
         }
         else {
             System.out.println("User creation failed, rank is invalid");
@@ -38,10 +86,56 @@ public class GroupProject {
                                 
     }
     
-    public static void getData(ArrayList<User> ArrayList){
+    public static void addCourse(String coursename, User user)// User Command
+    {
+        
+    }   
+        
+    public static void createCourse(String name, String courseNum)// Admin Command
+    {
+        
+    }    
+    
+    public static void getUserData(ArrayList<User> ArrayList)// prints all of the users relevant data, 
+    {
         for (int i =0; i < ArrayList.size(); i++){
             System.out.println(Arrays.toString(ArrayList.get(i).getInfo()));
         }
             
     }
+    
+    public static boolean Login(String name,String pass) // Test to see if username and password entered that of one of the users stored, true if they match
+    {
+        int i;
+        
+        for (i =0 ; i < UserData.size(); i++){
+            if((name.equals(UserData.get(i).getName()))&&(pass.equals(UserData.get(i).getPass()))){
+                LoginIndex=i;// This number is how we will find the logged in user
+                return true;
+                
+            }
+            else if (i == (UserData.size()-1)){
+                System.out.println("Login failed");
+                return false;
+            }
+        }
+        return false;
+    }
+    
+    public static void signUp(String name, String pass)//create user function but for the GUI
+    {
+        for (int i =0 ; i < UserData.size(); i++){
+            if(name.equals(UserData.get(i).getName())){
+                System.out.println("Name is already taken, please Sign up again");
+                break;
+            }
+            else if (i == (UserData.size()-1)){
+                createUser(name, pass, "Student");
+                System.out.println("Thank you for signing up! Your username is "+ name+" and your password is "+ pass);
+                getUserData(UserData);// Remove this line later, this is only for visual aid
+                break;
+            }
+        }
+    }
 }
+
