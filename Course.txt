@@ -1,0 +1,53 @@
+
+package group.project;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ *
+ * @author Evan Schwarzenbach
+ */
+public class Course {
+    private ArrayList<User> Members = new ArrayList<>();
+    private String Name;
+    private String Number;
+    
+    public Course(String name, String number){
+        Name= name;
+        Number= number;
+    }
+    
+    public String getName(){
+        return Name;
+        
+    }
+    
+    public String getNumber(){
+        return Number;
+        
+    }    
+    public String[] getInfo(){
+    String ar[] = new String[2];
+    ar[0]= Name;
+    ar[1]= Number;
+    return ar;
+    }
+    
+    public void addMember(User user) {// Each course will have a list of Users that are in it
+        Members.add(user);
+    }
+    
+    public void myMembers() {// Used for getting all of a courses members
+        if (Members.isEmpty()){
+            System.out.println("You have no Members");
+        }
+        else{
+            System.out.println("This courses members are");
+            for (int i =0; i < Members.size(); i++){
+                System.out.println(Arrays.toString(Members.get(i).getInfo()));
+            }
+        }
+
+    }
+}
