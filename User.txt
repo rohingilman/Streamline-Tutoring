@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package group.project;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -13,7 +10,7 @@ import java.util.Random;
  * @author Evan Schwarzenbach
  */
 public class User {
-    
+    private ArrayList<Course> myCourses = new ArrayList<>();
     private String Name;
     private String Pass;
     private String Rank;
@@ -23,7 +20,7 @@ public class User {
         Pass=pass;
         Rank=rank;
         Random rand= new Random();
-        id= String.format("%04d", rand.nextInt(10000)); 
+        id= String.format("%05d", rand.nextInt(100000)); 
         
     }
     
@@ -45,7 +42,7 @@ public class User {
         
     }
 
-    public String[] getInfo(){
+    public String[] getInfo(){// Used for printing all users
         String ar[] = new String[4];
         ar[0]= Name;
         ar[1]= Pass;
@@ -54,6 +51,23 @@ public class User {
         return ar; 
 
     }
-}
+    
+    public void addCourse(Course course) {// Each user will have their own list of courses they are in
+        myCourses.add(course);
+    }
+    
+    public void myCourses() {
+        if (myCourses.isEmpty()){
+            System.out.println("You have no courses");
+        }
+        else{
+            System.out.println("Your courses are:");
+            for (int i =0; i < myCourses.size(); i++){
+            System.out.println(Arrays.toString(myCourses.get(i).getInfo()));
+            }
+        }
 
+    }
+
+}
 
