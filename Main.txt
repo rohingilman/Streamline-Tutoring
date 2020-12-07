@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
+/**
+ *
+ * @author Evan Schwarzenbach
+ */
 public class GroupProject {
     static ArrayList<User> UserData = new ArrayList<>();// Stores all Users
     static ArrayList<Course> Courses = new ArrayList<>();// Stores all courses
@@ -15,9 +18,22 @@ public class GroupProject {
     public static void main(String[] args) throws Exception {
         boolean Trial= true;
         createUser("Evan", "Dog", "Admin");// No matter what we will need at least one user created for this project beforehand
-        getUserData(UserData);
         
-        while(Trial== true) {
+//        createUser("James", "Dog", "Student");// This code is just test code, an example on how to use some of the methods
+//        getUserData(UserData);
+//        createCourse("Math", "1000");
+//        createCourse("Math", "2000");
+//        User Evan = UserData.get(0);
+//        User James = UserData.get(1);
+//        Course Math= Courses.get(0);
+//        Evan.myCourses();
+//        addCourse("Math", "1000", Evan);
+//        addCourse("Math", "2000", Evan);
+//        addCourse("Math", "1000", James);
+//        Evan.myCourses();
+//        Math.myMembers();
+
+        while(Trial== true) {// If you want to test code edit out this whole while loop, this while loop is the entrie GUI
             System.out.println();
             System.out.println("Hello! Welcome to Streamline tutoring.");
             System.out.println("Enter 0 to Sign Up");
@@ -47,8 +63,54 @@ public class GroupProject {
                 System.out.println("Please enter your password");
                 Scanner inPass = new Scanner(System.in);
                 String Pass = inPass.next(); 
-                if ((Login(Name,Pass))==true){//This is the hard stuff, the rest of our project rests within this if statement
-                    System.out.println("You have logged in");
+                if ((Login(Name,Pass))==true){//This is the hard stuff, the rest of our GUI rests within this if statement
+                    System.out.println("You have logged in, "+Name);
+                    Loggedin= true;
+                    User LoggedInUser= UserData.get(LoginIndex);// Declared User variable, is assigned during the user is logged in
+//                    System.out.println(LoggedInUser.getRank());
+                    
+                    while(Loggedin==true){
+                        
+                        if(LoggedInUser.getRank()=="Student"){// Gui for student Rank
+                            System.out.println();
+                            System.out.println("Welcome "+LoggedInUser.getName()+" to the Streamline tutoring home page your rank is "+LoggedInUser.getRank());
+                            System.out.println("Enter 0 to ");
+                            System.out.println("Enter 1 to Login");
+                            System.out.println("Enter 2 to Exit");
+                            System.out.println();
+                            Scanner in2 = new Scanner(System.in);
+                            String input2 = in2.next();
+                        }
+                        
+                        else if (LoggedInUser.getRank()=="Tutor") {// Gui for Tutor Rank
+                            System.out.println();
+                            System.out.println("Welcome "+LoggedInUser.getName()+" to the Streamline tutoring home page your rank is "+LoggedInUser.getRank());
+                            System.out.println("Enter 0 to Sign Up");
+                            System.out.println("Enter 1 to Login");
+                            System.out.println("Enter 2 to Exit");
+                            System.out.println("");
+                            System.out.println();
+                            Scanner in2 = new Scanner(System.in);
+                            String input2 = in2.next();
+                        }
+                        
+                        else if (LoggedInUser.getRank()=="Admin"){// GUI for Admin Rank
+                            System.out.println();
+                            System.out.println("Welcome "+LoggedInUser.getName()+" to the Streamline tutoring home page your rank is "+LoggedInUser.getRank());
+                            System.out.println("Enter 0 to See all user Data");
+                            System.out.println("Enter 1 to to see all courses");
+                            System.out.println("Enter 2 to Change the rank of a user");
+                            System.out.println("Enter 3 to create a course");
+                            System.out.println();
+                            Scanner in2 = new Scanner(System.in);
+                            String input2 = in2.next();
+                            
+                        }
+                        else {
+                            Loggedin=false;
+                        }
+                    }
+                    
                 }
                 
                 else {
@@ -86,14 +148,43 @@ public class GroupProject {
                                 
     }
     
-    public static void addCourse(String coursename, User user)// User Command
+    public static void addCourse(String name,String courseNum, User user)// User Command to add a course to his courses
     {
+        for (int i =0 ; i < Courses.size(); i++){
+            if(name.equals(Courses.get(i).getName())&&(courseNum.equals(Courses.get(i).getNumber()))){
+                user.addCourse(Courses.get(i));
+                Courses.get(i).addMember(user);
+                System.out.println("Course "+name+", "+courseNum+" has been added");
+                break;
+            }
+            else if (i == (Courses.size()-1)){
+                
+                System.out.println("Course "+name+", "+courseNum+" does not exist");
+                getCourseData(Courses);// Remove this line later, this is only for visual aid
+                break;
+            }        
+        }
+    }
         
-    }   
-        
-    public static void createCourse(String name, String courseNum)// Admin Command
+    public static void createCourse(String name, String courseNum)// Admin Command to create a course
     {
-        
+        for (int i =0 ; i < Courses.size(); i++){
+            if(name.equals(Courses.get(i).getName())&&(courseNum.equals(Courses.get(i).getNumber()))){
+                System.out.println("Course Name and Course number is already created");
+                break;
+            }
+            else if (i == (Courses.size()-1)){
+                Courses.add(new Course(name, courseNum));
+                System.out.println("Course "+name+", "+courseNum+" has been created");
+                getCourseData(Courses);// Remove this line later, this is only for visual aid
+                break;
+            }
+        }
+        if(Courses.isEmpty()){
+            Courses.add(new Course(name, courseNum));
+            System.out.println("Course Name and Course number is already created");
+            getCourseData(Courses);// Remove this line later, this is only for visual aid
+        }
     }    
     
     public static void getUserData(ArrayList<User> ArrayList)// prints all of the users relevant data, 
@@ -137,5 +228,13 @@ public class GroupProject {
             }
         }
     }
+    
+    public static void getCourseData(ArrayList<Course> ArrayList)// prints all of the Courses
+    {
+        for (int i =0; i < ArrayList.size(); i++){
+            System.out.println(Arrays.toString(ArrayList.get(i).getInfo()));
+        }  
+    }
 }
+
 
