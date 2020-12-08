@@ -1,2 +1,11 @@
-0
-USERNAME	PASSWORD	RANK  FIRST_NAME  LAST_NAME
+9
+USERNAME	PASSWORD	RANK
+rgilma1	password	ADMIN
+arand25	aserldsa	STUDENT
+hblac37	ieldadfx	STUDENT
+mbrzyz3	asdfiekd	STUDENT
+tyu0003	qiekdliz	TUTOR
+bshapi9	eidlakde	TUTOR
+swats16	passpass	ADMIN
+eschw19	passcode	ADMIN
+ueari22	aadafiek	STUDENT
