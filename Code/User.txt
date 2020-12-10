@@ -5,23 +5,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- *
- * @author Evan Schwarzenbach
- */
 public class User {
     private ArrayList<Course> myCourses = new ArrayList<>();
+    ArrayList<Appointment> myAppointments = new ArrayList<>();
     private String Name;
     private String Pass;
     private String Rank;
     private String id;
-    public User(String name, String pass, String rank){
+    public User(String name, String pass, String rank){//User Constructor
         Name=name;
         Pass=pass;
         Rank=rank;
         Random rand= new Random();
         id= String.format("%05d", rand.nextInt(100000)); 
         
+    }
+    
+    public void changeRank(User user, String newRank){// Change Rank of a User
+        if(newRank.equals("Student")){
+            System.out.println(user.getName()+"'s rank has been changed to "+newRank);
+            user.Rank= newRank;
+        }
+        else if(newRank.equals("Tutor")){
+            System.out.println(user.getName()+"'s rank has been changed to "+newRank);
+            user.Rank=newRank;
+        }
+        else if(newRank.equals("Admin")){
+            System.out.println(user.getName()+"'s rank has been changed to "+newRank);
+            user.Rank=newRank;
+        }
+        else {
+            System.out.println("Rank change failed, rank is invalid");
+        }
     }
     
     public String getName(){
@@ -42,7 +57,7 @@ public class User {
         
     }
 
-    public String[] getInfo(){// Used for printing all users
+    public String[] getInfo(){
         String ar[] = new String[4];
         ar[0]= Name;
         ar[1]= Pass;
@@ -56,7 +71,7 @@ public class User {
         myCourses.add(course);
     }
     
-    public void myCourses() {
+    public void myCourses() {// Prints the course in a users mr courses ArrayList
         if (myCourses.isEmpty()){
             System.out.println("You have no courses");
         }
@@ -69,5 +84,30 @@ public class User {
 
     }
 
+    public String getDate(Date date){
+        return date.getDate();
+    }
+    public String getTime(Date date){
+        return date.getTime();
+    }   
+    
+    public void addAppointment(Appointment a){// Adds an appointment to a users appointment arraylist
+        
+        myAppointments.add(a);
+    }
+    
+    public void getMyAppointments(){// prints the conents of the appointment arraylist
+        if (myAppointments.isEmpty()){
+            System.out.println("You have no appointments");
+        }
+        else{
+            System.out.println("Your appointments are are:");
+            for (int i =0; i < myAppointments.size(); i++){
+            System.out.println(Arrays.toString(myAppointments.get(i).getInfo()));
+            }
+        }
+
+    }
 }
+
 
