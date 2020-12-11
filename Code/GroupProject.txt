@@ -17,29 +17,88 @@ public class GroupProject {
     
     public static void main(String[] args) throws Exception {
         boolean Trial= true;
-        createUser("Evan", "Dog", "Admin");// No matter what we will need at least one user created for this project beforehand
-        createUser("James", "Dog", "Tutor");// No matter what we will need at least one user created for this project beforehand
-        //Below are lines of test code
-//        createUser("David", "Dog", "Student");
-//        getUserData(UserData);
-//        createCourse("Math", "1000");
-//        createCourse("Math", "2000");
-//        User Evan = UserData.get(0);
-//        User James = UserData.get(1);
-//        Course Math= Courses.get(0);
-//        Evan.myCourses();
-//        addCourse("Math", "1000", Evan);
-//        addCourse("Math", "2000", Evan);
-//        addCourse("Math", "1000", James);
-//        Evan.myCourses();
-//        Math.myMembers();
-//        getCourseData(Courses);
-//        Addtime("12/20", "17:00", Math, James);
-//        Coursetimes("Math","3000");
-//        createAppointment("Math", "1000", "12/20", "17:00", "James", Evan);
-//        createAppointment("Math", "2000", "12/20", "17:00", "James", Evan);
-//        Evan.getMyAppointments();
-//        James.getMyAppointments();
+
+        /* **************************************************************************************************** */
+
+        //TESTER CODE
+
+        createUser("Rohin", "password", "Admin"); // Add users to the databse
+        createUser("Evan", "passcode", "Admin");
+        createUser("Stephen", "passpass", "Admin");
+        createUser("Tracy", "aserldsa", "Tutor");
+        createUser("Ben", "ieldadfx", "Tutor");
+        createUser("Abby", "asdfiekd", "Student");
+        createUser("Hannah", "qiekdliz", "Student");
+        createUser("Maddie", "eidlakde", "Student");
+        createUser("Tiffany", "aadafiek", "Student");
+
+        createCourse("MATH", "1551"); // Add courses to the database
+        createCourse("PHYS", "2002");
+        createCourse("CSC", "3501");
+        createCourse("CSC", "3380");
+        createCourse("ENGL", "2550");
+
+        addCourse("MATH", "1551", UserData.get(3)); // Assign courses to tutors
+        addCourse("PHSY", "2002", UserData.get(3));
+        addCourse("CSC", "3501", UserData.get(3));
+        addCourse("CSC", "3380", UserData.get(3));
+        addCourse("MATH", "1551", UserData.get(4));
+        addCourse("PHSY", "2002", UserData.get(4));
+        addCourse("ENGL", "2550", UserData.get(4));
+
+        addCourse("MATH", "1551", UserData.get(5)); // Assign courses to students
+        addCourse("PHYS", "2002", UserData.get(5));
+        addCourse("CSC", "3501", UserData.get(5));
+        addCourse("ENGL", "2550", UserData.get(5));
+        addCourse("MATH", "1551", UserData.get(6));
+        addCourse("PHYS", "2002", UserData.get(6));
+        addCourse("CSC", "3380", UserData.get(6));
+        addCourse("ENGL", "2550", UserData.get(6));
+        addCourse("PHYS", "2002", UserData.get(7));
+        addCourse("CSC", "3501", UserData.get(7));
+        addCourse("ENGL", "2550", UserData.get(7));
+        addCourse("MATH", "1551", UserData.get(8));
+        addCourse("CSC", "3501", UserData.get(8));
+
+        Addtime("12/07", "09:00", Courses.get(0), UserData.get(3)); // Add time for tutors
+        Addtime("12/07", "09:00", Courses.get(1), UserData.get(3));
+        Addtime("12/07", "09:00", Courses.get(2), UserData.get(3));
+        Addtime("12/07", "09:00", Courses.get(3), UserData.get(3));
+        Addtime("12/07", "10:00", Courses.get(0), UserData.get(3));
+        Addtime("12/07", "10:00", Courses.get(1), UserData.get(3));
+        Addtime("12/07", "10:00", Courses.get(2), UserData.get(3));
+        Addtime("12/07", "10:00", Courses.get(3), UserData.get(3));
+        Addtime("12/08", "12:00", Courses.get(0), UserData.get(3));
+        Addtime("12/08", "12:00", Courses.get(1), UserData.get(3));
+        Addtime("12/08", "12:00", Courses.get(2), UserData.get(3));
+        Addtime("12/08", "12:00", Courses.get(3), UserData.get(3));
+        Addtime("12/09", "09:00", Courses.get(0), UserData.get(3));
+        Addtime("12/09", "09:00", Courses.get(1), UserData.get(3));
+        Addtime("12/09", "09:00", Courses.get(2), UserData.get(3));
+        Addtime("12/09", "09:00", Courses.get(3), UserData.get(3));
+        Addtime("12/10", "09:00", Courses.get(0), UserData.get(3));
+        Addtime("12/10", "09:00", Courses.get(1), UserData.get(3));
+        Addtime("12/10", "09:00", Courses.get(2), UserData.get(3));
+        Addtime("12/10", "09:00", Courses.get(3), UserData.get(3));
+        Addtime("12/11", "09:00", Courses.get(0), UserData.get(3));
+        Addtime("12/11", "09:00", Courses.get(1), UserData.get(3));
+        Addtime("12/11", "09:00", Courses.get(2), UserData.get(3));
+        Addtime("12/11", "09:00", Courses.get(3), UserData.get(3));
+        Addtime("12/07", "12:00", Courses.get(0), UserData.get(4));
+        Addtime("12/07", "12:00", Courses.get(1), UserData.get(4));
+        Addtime("12/07", "12:00", Courses.get(4), UserData.get(4));
+        Addtime("12/08", "09:00", Courses.get(0), UserData.get(4));
+        Addtime("12/08", "09:00", Courses.get(1), UserData.get(4));
+        Addtime("12/08", "09:00", Courses.get(4), UserData.get(4));
+        Addtime("12/09", "12:00", Courses.get(0), UserData.get(4));
+        Addtime("12/09", "12:00", Courses.get(1), UserData.get(4));
+        Addtime("12/09", "12:00", Courses.get(4), UserData.get(4));
+        Addtime("12/10", "12:00", Courses.get(0), UserData.get(4));
+        Addtime("12/10", "12:00", Courses.get(1), UserData.get(4));
+        Addtime("12/10", "12:00", Courses.get(4), UserData.get(4));
+        
+        /* **************************************************************************************************** */
+
         while(Trial== true) {
             System.out.println();
             System.out.println("Hello! Welcome to Streamline tutoring.");
@@ -467,5 +526,3 @@ public class GroupProject {
         System.out.println("Error in creating appointment 2");
     }
 }
-
-
